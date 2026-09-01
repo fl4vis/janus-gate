@@ -11,3 +11,4 @@ COPY --from=builder /app/server .
 
 CMD ["./server"]
 
+LABEL org.opencontainers.image.source=https://github.com/fl4vis/janus-gate

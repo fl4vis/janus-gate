@@ -47,9 +47,9 @@ func main() {
 	srv := &http.Server{
 		Addr:         ":" + PORT,
 		Handler:      mux,
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 5 * time.Second,
-		IdleTimeout:  5 * time.Second,
+		ReadTimeout:  15 * time.Second,
+		WriteTimeout: 15 * time.Second,
+		IdleTimeout:  15 * time.Second,
 	}
 
 	log.Fatal(srv.ListenAndServe())
@@ -139,7 +139,7 @@ func isPortOpen(ipJobs <-chan string, ipResults chan<- candidate, wg *sync.WaitG
 
 	for job := range ipJobs {
 
-		timeout := time.Second * 10
+		timeout := time.Second * 8
 
 		conn, err := net.DialTimeout(
 			"tcp",
