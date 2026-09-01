@@ -1,0 +1,9 @@
+services:
+  backend:
+    build: .
+    image: mesh-api:latest
+    environment:
+      - PORT=${PORT}
+      - HEADSCALE_API_KEY=${HEADSCALE_API_KEY}
+    ports:
+      - "${PORT}:${PORT}"
