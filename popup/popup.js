@@ -19,11 +19,11 @@ function init() {
 
 function wireEvents() {
 	state.elements.nodesBtn.addEventListener("click", () => Nodes.fetchNodes({ force: true }))
-	state.elements.nodesList.addEventListener("click", Nodes.handleNodeSelection)
-	state.elements.nodesTitle.addEventListener("click", Nodes.toggleNodesList)
+	state.elements.nodesList.addEventListener("click", (e) => Nodes.handleNodeSelection(e))
+	state.elements.nodesTitle.addEventListener("click", () => Nodes.toggleNodesList())
 
-	state.elements.connectBtn.addEventListener("click", ProxyConnection.handleConnect)
-	state.elements.disconnectBtn.addEventListener("click", ProxyConnection.handleDisconnect)
+	state.elements.connectBtn.addEventListener("click", () => ProxyConnection.handleConnect())
+	state.elements.disconnectBtn.addEventListener("click", () => ProxyConnection.handleDisconnect())
 
-	window.addEventListener("focus", ProxyConnection.refreshProxyStatus)
+	window.addEventListener("focus", () => ProxyConnection.refreshProxyStatus())
 }
