@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-scrollbar">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <script src="../tailwind_cdn_548.js"></script>
+
+    <style>
+        :root {
+            --text-xs: 0.65rem;
+            --text-sm: 0.75rem;
+            --text-base: 0.875rem;
+            --text-lg: 1rem;
+            --text-xl: 1.125rem;
+            --text-2xl: 1.3rem;
+        }
+
+        .no-scrollbar {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body
+    class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 font-['Space_Grotesk',sans-serif]">
+    <main class="mx-auto max-w-2xl px-6 py-12">
+
+        <!-- Header -->
+        <header class="mb-8">
+            <div
+                class="inline-flex items-center gap-2 rounded-full bg-blue-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-300">
+                <span class="h-2 w-2 rounded-full bg-blue-400"></span>
+
+                Janus Gate
+
+                <img src="../icons/janus_icon32.png" alt="Janus Gate" class="h-4 w-4" />
+            </div>
+
+            <h1 class="mt-5 text-2xl font-semibold text-white">
+                Settings
+            </h1>
+
+            <p class="mt-2 text-sm text-slate-400">
+                Configure the server Janus Gate uses to discover proxy nodes.
+            </p>
+        </header>
+
+        <!-- Settings card -->
+        <section
+            class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-blue-900/30">
+            <!-- Glow -->
+            <div class="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl"></div>
+
+            <div class="relative p-6">
+
+                <!-- Section header -->
+                <div class="mb-6">
+                    <h2 class="text-sm font-semibold text-slate-200">
+                        API Connection
+                    </h2>
+
+                    <p class="mt-1 text-xs text-slate-400">
+                        Set the address of your Janus Gate API server.
+                    </p>
+                </div>
+
+                <!-- API URL -->
+                <div>
+                    <label for="apiUrl" class="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                        API URL
+                    </label>
+
+                    <input id="apiUrl" type="url" autocomplete="url" spellcheck="false"
+                        placeholder="https://mesh.example.com"
+                        class="mt-2 w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-600 transition focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-300/30" />
+                </div>
+
+                <!-- Save -->
+                <div class="mt-6 flex items-center justify-between gap-4">
+
+                    <p id="status" class="text-xs text-slate-400" aria-live="polite"></p>
+
+                    <button id="save"
+                        class="rounded-2xl bg-blue-500/80 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/40 transition hover:bg-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300">
+                        Save settings
+                    </button>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="./options.js"></script>
+</body>
+
+</html>
