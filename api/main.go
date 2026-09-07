@@ -139,7 +139,7 @@ func isPortOpen(ipJobs <-chan string, ipResults chan<- candidate, wg *sync.WaitG
 
 	for job := range ipJobs {
 
-		timeout := time.Second * 8
+		timeout := time.Millisecond * 750
 
 		conn, err := net.DialTimeout(
 			"tcp",
