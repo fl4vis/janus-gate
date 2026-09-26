@@ -78,7 +78,7 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("GET /", renderingController.Index)
+	mux.HandleFunc("GET /{$}", renderingController.Index)
 	mux.HandleFunc("GET /visa", visaController.Index)
 	mux.HandleFunc("POST /visa", visaController.Create)
 
@@ -91,10 +91,7 @@ func main() {
 
 		log.Println("production mode")
 
-		mux.Handle(
-			"/",
-			http.FileServerFS(dist),
-		)
+		mux.Handle("/", http.FileServerFS(dist))
 	}
 
 	// Dev mode
