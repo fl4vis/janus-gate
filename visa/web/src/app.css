@@ -1,3 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&display=swap");
+
+:root {
+	color: #d9f6ff;
+	background: #020914;
+	font-family: "Manrope", sans-serif;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	color-scheme: dark;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+	min-width: 320px;
+	min-height: 100%;
+	margin: 0;
+}
+
+body {
+	min-height: 100vh;
+	background:
+		radial-gradient(ellipse 80% 48% at 20% -12%, rgba(0, 118, 255, 0.22), transparent 62%),
+		radial-gradient(ellipse 52% 38% at 94% 8%, rgba(0, 229, 255, 0.1), transparent 68%), #020914;
+}
+
+#root {
+	width: min(1440px, calc(100% - 48px));
+	margin: 0 auto;
+	padding: clamp(42px, 7vw, 36px) 0 24px;
+}
+
 h1 {
-	color: firebrick;
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	margin: 0;
+	color: #63e7ff;
+	text-shadow:
+		0 0 18px rgba(42, 209, 255, 0.42),
+		0 0 42px rgba(0, 113, 255, 0.24);
+	font-size: clamp(2rem, 5vw, 4rem);
+	font-weight: 800;
+	letter-spacing: -0.04em;
+	line-height: 0.98;
+}
+
+.visa-title {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	margin-bottom: 30px;
+}
+
+.visa-title__favicon {
+	width: clamp(48px, 4vw, 66px);
+	height: clamp(48px, 4vw, 66px);
+	flex: 0 0 auto;
+	object-fit: contain;
+}
+
+/* React Datepicker: input, popover, and all navigation controls. */
+.react-datepicker-wrapper {
+	display: inline-block;
+	margin-bottom: 2em;
+}
+
+.react-datepicker__input-container input {
+	width: min(100%, 290px);
+	min-height: 50px;
+	padding: 0 17px;
+	color: #e9fbff;
+	outline: 0;
+	border: 1px solid rgba(66, 207, 255, 0.45);
+	border-radius: 12px;
+	background: linear-gradient(105deg, rgba(9, 34, 63, 0.92), rgba(5, 20, 41, 0.92));
+	box-shadow:
+		inset 0 1px 0 rgba(143, 235, 255, 0.1),
+		0 14px 36px rgba(0, 2, 13, 0.36);
+	font:
+		500 0.88rem/1 "DM Mono",
+		monospace;
+	letter-spacing: 0.045em;
+	caret-color: #48e2ff;
+	transition:
+		border-color 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+.react-datepicker__input-container input:hover {
+	border-color: #5ae5ff;
+}
+.react-datepicker__input-container input:focus {
+	border-color: #63e7ff;
+	box-shadow:
+		inset 0 1px 0 rgba(143, 235, 255, 0.16),
+		0 0 0 4px rgba(28, 195, 255, 0.16),
+		0 14px 36px rgba(0, 2, 13, 0.36);
+}
+
+.react-datepicker-popper {
+	z-index: 20 !important;
+}
+.react-datepicker {
+	color: #daf8ff;
+	border: 1px solid rgba(76, 211, 255, 0.48) !important;
+	border-radius: 13px !important;
+	background: #06182d !important;
+	box-shadow:
+		0 20px 46px rgba(0, 2, 12, 0.56),
+		0 0 0 1px rgba(94, 224, 255, 0.08);
+	font-family: "Manrope", sans-serif !important;
+}
+
+.react-datepicker__header {
+	padding-top: 14px !important;
+	border-bottom-color: rgba(74, 203, 255, 0.25) !important;
+	border-radius: 12px 12px 0 0 !important;
+	background: #092440 !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header,
+.react-datepicker__day-name {
+	color: #a7efff !important;
+}
+
+.react-datepicker__month-text {
+	color: #cceef9 !important;
+	border-radius: 7px;
+}
+.react-datepicker__month-text:hover {
+	background: rgba(23, 176, 244, 0.22) !important;
+}
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--keyboard-selected {
+	color: #03121f !important;
+	background: #4de1ff !important;
+}
+
+.react-datepicker__navigation {
+	top: 11px !important;
+	width: 30px !important;
+	height: 30px !important;
+	border: 1px solid rgba(88, 222, 255, 0.48) !important;
+	border-radius: 8px !important;
+	background: #0a3152 !important;
+	transition:
+		background-color 0.18s ease,
+		border-color 0.18s ease,
+		transform 0.18s ease;
+}
+
+.react-datepicker__navigation:hover {
+	border-color: #67e9ff !important;
+	background: #0e4b78 !important;
+	transform: translateY(-1px);
+}
+
+.react-datepicker__navigation--previous {
+	left: 11px !important;
+}
+.react-datepicker__navigation--next {
+	right: 11px !important;
+}
+.react-datepicker__navigation-icon::before {
+	border-color: #9cf0ff !important;
+	border-width: 0 2px 2px 0 !important;
+}
+.react-datepicker__triangle {
+	display: none;
+}
+
+/* AG Grid's own Quartz dark-blue theme is configured in Table.tsx. */
+.visa-grid-shell {
+	width: 100%;
+	overflow: hidden;
+	border: 1px solid rgba(74, 194, 255, 0.28);
+	border-radius: 16px;
+	box-shadow:
+		0 24px 64px rgba(0, 1, 10, 0.46),
+		inset 0 1px 0 rgba(133, 226, 255, 0.08);
+	animation: settle-table 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.visa-data {
+	width: min(100%, 960px);
+}
+
+.visa-pagination {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	margin-top: 18px;
+}
+
+.visa-pagination__button {
+	min-height: 42px;
+	padding: 0 17px;
+	color: #bceefa;
+	border: 1px solid rgba(80, 204, 255, 0.34);
+	border-radius: 9px;
+	background: rgba(8, 33, 59, 0.7);
+	box-shadow: inset 0 1px 0 rgba(150, 235, 255, 0.07);
+	font:
+		500 0.74rem/1 "DM Mono",
+		monospace;
+	letter-spacing: 0.055em;
+	cursor: pointer;
+	transition:
+		background-color 0.18s ease,
+		border-color 0.18s ease,
+		color 0.18s ease,
+		box-shadow 0.18s ease,
+		transform 0.18s ease;
+}
+
+.visa-pagination__button:hover:not(:disabled) {
+	color: #effcff;
+	border-color: #5ce4ff;
+	background: #0b426b;
+	box-shadow:
+		0 8px 20px rgba(0, 103, 172, 0.2),
+		inset 0 1px 0 rgba(175, 245, 255, 0.14);
+	transform: translateY(-1px);
+}
+
+.visa-pagination__button--next {
+	color: #02131f;
+	border-color: #5be5ff;
+	background: #51daff;
+	box-shadow:
+		0 8px 22px rgba(0, 168, 233, 0.28),
+		inset 0 1px 0 rgba(255, 255, 255, 0.38);
+}
+
+.visa-pagination__button--next:hover:not(:disabled) {
+	color: #001017;
+	border-color: #a5f5ff;
+	background: #8cecff;
+}
+
+.visa-pagination__button:focus-visible {
+	outline: 0;
+	box-shadow: 0 0 0 3px rgba(83, 225, 255, 0.28);
+}
+
+.visa-pagination__button:disabled {
+	color: rgba(168, 210, 225, 0.4);
+	border-color: rgba(85, 151, 180, 0.16);
+	background: rgba(7, 26, 45, 0.56);
+	box-shadow: none;
+	cursor: not-allowed;
+}
+
+::selection {
+	color: #00101c;
+	background: #58e2ff;
+}
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+::-webkit-scrollbar-track {
+	background: #030d19;
+}
+::-webkit-scrollbar-thumb {
+	border: 3px solid #030d19;
+	border-radius: 20px;
+	background: #176492;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #38c6f0;
+}
+
+@keyframes settle-table {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (max-width: 600px) {
+	#root {
+		width: min(100% - 28px, 1440px);
+		padding-top: 36px;
+	}
+	.visa-title {
+		margin-bottom: 28px;
+	}
+	.visa-grid-shell {
+		border-radius: 12px;
+	}
 }
