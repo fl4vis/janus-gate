@@ -1,18 +1,18 @@
-import { useState } from "react";
-import DateSearch from "./DateSearch";
-import VisaData from "./VisaData";
+import { useState } from "react"
+import DateSearch from "./DateSearch"
+import VisaData from "./VisaData"
+import favicon from "./assets/favicon.svg"
 
 function App() {
-    const [date, setDate] = useState<Date>(new Date());
+    const [date, setDate] = useState<Date>(new Date())
 
     return (
         <>
-            <h1>Visa</h1>
+            <header className="visa-title">
+                <img className="visa-title__favicon" src={favicon} alt="Visa Track" />
+                <h1>Visa Track</h1>
+            </header>
             <DateSearch date={date} setDate={setDate} />
-            <br />
-            <br />
-            <br />
-            <br />
             <VisaData date={date} />
         </>
     )
