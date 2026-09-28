@@ -3,7 +3,7 @@
 	"name": "Janus Gate",
 	"version": "1.0.0",
 	"description": "Activa, deactiva, et rege conexionem retis Janus per SOCKS5, ex instrumentorum ordine",
-	"permissions": ["proxy", "storage", "webRequest"],
+	"permissions": ["proxy", "storage"],
 	"host_permissions": ["<all_urls>"],
 	"background": {
 		"service_worker": "background.js"
@@ -17,11 +17,5 @@
 		"48": "./icons/janus_icon48.png",
 		"128": "./icons/janus_icon128.png"
 	},
-	"options_page": "options/options.html",
-	"content_scripts": [
-		{
-			"matches": ["https://ceac.state.gov/*"],
-			"js": ["content.js"]
-		}
-	]
+	"options_page": "options/options.html"
 }

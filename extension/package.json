@@ -1,14 +1,16 @@
 {
-  "name": "janus-gate",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "prettier": "3.9.6"
-  }
+	"name": "janus-gate",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"build:normal": "node build.mjs normal",
+		"build:visa": "node build.mjs visa",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"devDependencies": {
+		"prettier": "3.9.6"
+	}
 }
