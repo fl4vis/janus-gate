@@ -3,7 +3,7 @@
 ```bash
 curl -X POST localhost:4040/visa \
   -H "Content-Type: application/json" \
-  -d '{"applicationId": "AADF34", "name":"Ana", "lastname":"Lopez", "ip":"10.0.64.3"}'
+  -d '{ "name":"Ana", "lastname":"Lopez", "application_id": "01M3E", "ip":"10.0.64.3"}'
 ```
 <br>
 

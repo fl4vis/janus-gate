@@ -24,7 +24,7 @@ func (c *VisaController) Index(w http.ResponseWriter, r *http.Request) {
 	cursor, _ := strconv.Atoi(r.URL.Query().Get("cursor"))
 	date := r.URL.Query().Get("date")
 
-	limit := 20
+	const LIMIT int = 20
 
 	rows, err := c.db.Query(
 		`SELECT id, name, lastname, application_id, ip, date 
@@ -33,7 +33,7 @@ func (c *VisaController) Index(w http.ResponseWriter, r *http.Request) {
 		 AND strftime('%Y-%m', date) = ?
 		 ORDER BY id ASC
 	     LIMIT ?
-		`, cursor, date, limit,
+		`, cursor, date, LIMIT,
 	)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -93,11 +93,34 @@ func (c *VisaController) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	issuedDAte := time.Now().Format("02/01/2006")
+	// AntiCorruption
+	var exists bool
+
+	err := c.db.QueryRow(
+		`SELECT EXISTS(
+			SELECT 1
+			FROM visa
+			WHERE application_id = ?)`,
+		v.ApplicationId,
+	).Scan(&exists)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	if exists {
+		http.Error(w, "application_id already exists", http.StatusAlreadyReported)
+		return
+	}
+
+	// Create if no application exists
+	issuedDate := time.Now().Format("2006-01-02")
+	v.Date = issuedDate
 
 	res, err := c.db.Exec(
 		"INSERT INTO visa( name, lastname, application_id, ip, date) VALUES(?, ?, ?, ?, ?)",
-		v.Name, v.LastName, v.ApplicationId, v.Ip, issuedDAte)
+		v.Name, v.LastName, v.ApplicationId, v.Ip, v.Date)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return

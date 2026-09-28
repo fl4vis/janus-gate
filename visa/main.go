@@ -73,6 +73,15 @@ func main() {
 		log.Fatal(err)
 	}
 
+	_, err = db.Exec(`
+	CREATE INDEX IF NOT EXISTS idx_visa_application_id
+	ON visa(application_id)
+	`)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Server
 	visaController := NewVisaController(db)
 	renderingController := NewRenderingController(*dev, manifest)
 
