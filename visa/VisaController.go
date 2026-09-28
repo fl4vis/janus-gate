@@ -110,7 +110,7 @@ func (c *VisaController) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if exists {
-		http.Error(w, "application_id already exists", http.StatusAlreadyReported)
+		http.Error(w, "application_id already exists", http.StatusConflict)
 		return
 	}
 
