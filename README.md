@@ -1,8 +1,23 @@
 # Janus-Gate
 
+## API Service 
+
+It communicates the extension available nodes in the mesh
+
+<br>
+
+### Install Process
+
+Generate an `.env` file for the binary to read
+
+```env
+PORT=8787
+HEADSCALE_API_KEY=<key>
+```
+
 Create a background service with systemd 
 
-Create `/etc/systemd/system/janus-api.service`
+`/etc/systemd/system/janus-api.service`
 
 ```systemd
 ini
