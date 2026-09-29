@@ -97,7 +97,7 @@ func handleNodes(w http.ResponseWriter, r *http.Request) {
 	// Check for port :1080
 	// --------------
 	ipJobs := make(chan string)
-	ipResults := make(chan candidate)
+	ipResults := make(chan candidate, len(data.Nodes))
 
 	var wg sync.WaitGroup
 
