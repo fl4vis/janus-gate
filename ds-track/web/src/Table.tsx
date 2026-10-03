@@ -92,11 +92,7 @@ export default function Table({ visaData }: TableProps) {
                     valueFormatter: (params) => {
                         if (!params.value) return ""
 
-                        return new Date(params.value).toLocaleTimeString("es-EC", {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            hour12: false,
-                        })
+                        return params.value.slice(11, 16)
                     },
                 }
             ]
