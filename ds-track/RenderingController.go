@@ -93,7 +93,7 @@ func (c *RenderingController) Index(w http.ResponseWriter, r *http.Request) {
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			%s
-			<title>Visa</title>
+			<title>DS Track</title>
 		</head>
 
 		<body>

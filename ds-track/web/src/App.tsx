@@ -10,7 +10,7 @@ function App() {
         <>
             <header className="visa-title">
                 <img className="visa-title__favicon" src={favicon} alt="Visa Track" />
-                <h1>Visa Track</h1>
+                <h1>DS Track</h1>
             </header>
             <DateSearch date={date} setDate={setDate} />
             <VisaData date={date} />

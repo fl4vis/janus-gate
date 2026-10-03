@@ -45,7 +45,8 @@ h1 {
 		0 0 42px rgba(0, 113, 255, 0.24);
 	font-size: clamp(2rem, 5vw, 4rem);
 	font-weight: 800;
-	letter-spacing: -0.04em;
+	letter-spacing: -0.05em;
+	word-spacing: 0.2em;
 	line-height: 0.98;
 }
 
@@ -189,7 +190,7 @@ h1 {
 }
 
 .visa-data {
-	width: min(100%, 960px);
+	width: min(100%, 1100px);
 }
 
 .visa-pagination {

@@ -1,6 +1,6 @@
-const apiUrlInput = document.querySelector("#apiUrl")
-const saveButton = document.querySelector("#save")
-const status = document.querySelector("#status")
+const apiUrlInput = /** @type {HTMLInputElement}*/ (document.querySelector("#apiUrl"))
+const saveButton = /** @type {HTMLButtonElement}*/ (document.querySelector("#save"))
+const statusCheck = /** @type {HTMLElement} */ (document.querySelector("#status"))
 
 async function loadSettings() {
 	const { apiUrl = "" } = await chrome.storage.local.get("apiUrl")
@@ -35,8 +35,8 @@ async function saveSettings() {
 	try {
 		apiUrl = validateUrl(apiUrlInput.value.trim(), "API URL")
 	} catch (error) {
-		status.textContent = error.message
-		status.className = "text-xs text-red-300"
+		statusCheck.textContent = error.message
+		statusCheck.className = "text-xs text-red-300"
 		return
 	}
 
@@ -44,11 +44,11 @@ async function saveSettings() {
 
 	apiUrlInput.value = apiUrl
 
-	status.textContent = "Settings saved."
-	status.className = "text-xs text-emerald-300"
+	statusCheck.textContent = "Settings saved."
+	statusCheck.className = "text-xs text-emerald-300"
 
 	setTimeout(() => {
-		status.textContent = ""
+		statusCheck.textContent = ""
 	}, 2500)
 }
 

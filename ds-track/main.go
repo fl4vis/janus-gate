@@ -12,15 +12,6 @@ import (
 	_ "modernc.org/sqlite"
 )
 
-type Visa struct {
-	ID            int    `json:"id"`
-	Name          string `json:"name"`
-	LastName      string `json:"lastname"`
-	ApplicationId string `json:"application_id"`
-	Ip            string `json:"ip"`
-	Date          string `json:"date"`
-}
-
 var (
 	db *sql.DB
 )
@@ -65,8 +56,10 @@ func main() {
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		name TEXT NOT NULL,
 		lastname TEXT NOT NULL,
+		dni TEXT,
 	    application_id TEXT NOT NULL,
 		ip TEXT NOT NULL,
+		asesor TEXT NOT NULL,
 		date DATE NOT NULL
 		)`)
 	if err != nil {
@@ -90,6 +83,7 @@ func main() {
 	mux.HandleFunc("GET /{$}", renderingController.Index)
 	mux.HandleFunc("GET /visa", visaController.Index)
 	mux.HandleFunc("POST /visa", visaController.Create)
+	mux.HandleFunc("PATCH /visa", visaController.Patch)
 
 	// Production assets
 	if !*dev {

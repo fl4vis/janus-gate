@@ -6,15 +6,23 @@ export function createRandomVisa() {
 	return {
 		name: faker.person.firstName(),
 		lastname: faker.person.lastName(),
+		dni: faker.number
+			.int({
+				min: 1000000000,
+				max: 2499999999,
+			})
+			.toString(),
 		application_id: faker.string.ulid(),
 		ip: faker.internet.ipv4({ cidrBlock: "10.64.0.0/28" }),
+		asesor: faker.person.fullName(),
 		date: faker.date
 			.between({
 				from: "2026-01-01",
 				to: new Date(),
 			})
 			.toISOString()
-			.split("T")[0],
+			.replace("T", " ")
+			.slice(0, 16),
 	}
 }
 
@@ -32,8 +40,10 @@ let values = visa
         (
         ${sqlString(v.name)},
         ${sqlString(v.lastname)},
+        '${v.dni}',
         '${v.application_id}',
         '${v.ip}',
+        ${sqlString(v.asesor)},
         '${v.date}'
         ),`,
 	)
@@ -45,8 +55,10 @@ const sql = `
 	INSERT INTO visa (
 		name,
 		lastname,
+        dni,
 		application_id,
 		ip,
+        asesor,
 		date
 	)
 	VALUES
