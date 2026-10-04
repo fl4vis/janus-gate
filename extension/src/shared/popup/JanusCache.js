@@ -20,7 +20,7 @@ export default class JanusCache {
 	 */
 	static writeJsonToStorage(key, value) {
 		try {
-			localStorage.setItem(state.NODE_CACHE_KEY, JSON.stringify(value))
+			localStorage.setItem(key, JSON.stringify(value))
 		} catch (error) {
 			console.warn(`Failed to persist ${key}`, error)
 		}

@@ -48,7 +48,7 @@ export default class Proxy {
 
 	/**
 	 * Get the current Chrome proxy configuration
-	 * @returns {Promise<chrome.proxy.ProxyConfig|null>}
+	 * @returns {Promise<chrome.types.ChromeSettingGetResult<chrome.proxy.ProxyConfig>|null>}
 	 */
 	static getProxySettings() {
 		return new Promise((resolve) => {
@@ -63,7 +63,7 @@ export default class Proxy {
 					resolve(null)
 					return
 				}
-				resolve(details?.value || null)
+				resolve(details || null)
 			})
 		})
 	}

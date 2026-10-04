@@ -50,15 +50,20 @@ export default class ProxyConnection {
 	static async handleDisconnect() {
 		this.#setButtonLoading(state.elements.disconnectBtn, true, "Disconnect", "Disconnecting…")
 		try {
-			await sendRuntimeMessage({ type: "CLEAR_PROXY" })
+			const response = await sendRuntimeMessage({ type: "CLEAR_PROXY" })
+			if (!response?.ok) {
+				throw new Error(response?.error || "Unable to clear proxy")
+			}
+
+			this.#persistCurrentProxy({ status: "disconnected", timestamp: Date.now() })
+			await this.refreshProxyStatus()
 		} catch (error) {
 			console.error("Failed to clear proxy", error)
+			this.setConnectionBadge("Error", "error")
+			Proxy.setProxyStatus(error instanceof Error ? error.message : String(error), "error")
 		} finally {
 			this.#setButtonLoading(state.elements.disconnectBtn, false, "Disconnect")
 		}
-		this.setConnectionBadge("Idle", "idle")
-		Proxy.setProxyStatus("Proxy disabled.", "info")
-		this.#persistCurrentProxy({ status: "disconnected", timestamp: Date.now() })
 	}
 
 	static async refreshProxyStatus() {
@@ -67,10 +72,11 @@ export default class ProxyConnection {
 			return
 		}
 
-		const { mode, rules } = settings
+		const { value, levelOfControl } = settings
+		const { mode, rules } = value
 		const singleProxy = rules?.singleProxy
 
-		if (mode === "fixed_servers" && singleProxy?.host) {
+		if (mode === "fixed_servers" && singleProxy?.host && levelOfControl === "controlled_by_this_extension") {
 			const port = singleProxy.port || state.DEFAULT_PORT
 			state.elements.hostInput.value = singleProxy.host
 			this.#persistCurrentProxy({

@@ -27,6 +27,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
 	if (msg.type === "SET_PROXY") {
 		const config = {
+			// Send traffic through a proxy server
 			mode: "fixed_servers",
 			rules: {
 				singleProxy: {
@@ -48,9 +49,22 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 	}
 
 	if (msg.type === "CLEAR_PROXY") {
-		chrome.proxy.settings.clear({ scope: "regular" }, () => {
-			sendResponse({ ok: true })
-		})
+		// Do not use settings.clear()
+		// It restores a profile's previous proxy which may be an unreachable proxy
+		chrome.proxy.settings.set(
+			{
+				// Send traffic to normal network
+				value: { mode: "direct" },
+				scope: "regular",
+			},
+			() => {
+				if (chrome.runtime.lastError) {
+					sendResponse({ ok: false, error: chrome.runtime.lastError.message })
+				} else {
+					sendResponse({ ok: true })
+				}
+			},
+		)
 		return true
 	}
 })
