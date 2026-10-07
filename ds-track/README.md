@@ -33,3 +33,23 @@ go build -o visa .
 node web/faker.js
 ```
 
+<br>
+
+```yaml
+
+services:
+  dstrack:
+    image: ghcr.io/fl4vis/dstrack:latest
+    container_name: dstrack
+    restart: unless-stopped
+
+    ports:
+      - "4040:4040"
+
+    volumes:
+      - dstrack-data:/data
+
+volumes:
+  dstrack-data:
+```
+
