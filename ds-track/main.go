@@ -36,10 +36,12 @@ func main() {
 	var err error
 
 	// Location
-	_, err = time.LoadLocation("America/Guayaquil")
+	location, err := time.LoadLocation("America/Guayaquil")
 	if err != nil {
 		log.Fatal("Failed to load timezone", err)
 	}
+
+	time.Local = location
 
 	/*
 	 * Sqlite
