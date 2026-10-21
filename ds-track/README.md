@@ -53,3 +53,11 @@ volumes:
   dstrack-data:
 ```
 
+<br>
+
+## Attach sqlite container to container
+
+```bash
+docker run --rm -it --user <user_id>:<user_id> -v <volume>:/data keinos/sqlite3 sqlite3 /data/app.db
+```
+
