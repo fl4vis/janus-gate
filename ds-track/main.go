@@ -35,13 +35,12 @@ func main() {
 
 	var err error
 
-	// Location
-	location, err := time.LoadLocation("America/Guayaquil")
+	// Always store visa timestamps in Ecuador time, independently of the
+	// container's configured local timezone.
+	ecuadorLocation, err := time.LoadLocation("America/Guayaquil")
 	if err != nil {
-		log.Fatal("Failed to load timezone", err)
+		log.Fatal("failed to load Ecuador timezone: ", err)
 	}
-
-	time.Local = location
 
 	/*
 	 * Sqlite
@@ -77,7 +76,7 @@ func main() {
 	}
 
 	// Server
-	visaController := NewVisaController(db)
+	visaController := NewVisaController(db, ecuadorLocation)
 	renderingController := NewRenderingController(*dev, manifest)
 
 	mux := http.NewServeMux()

@@ -36,13 +36,15 @@ type VisaPatch struct {
 
 type VisaController struct {
 	db       *sql.DB
+	location *time.Location
 	dev      bool
 	manifest ViteManifest
 }
 
-func NewVisaController(db *sql.DB) *VisaController {
+func NewVisaController(db *sql.DB, location *time.Location) *VisaController {
 	return &VisaController{
-		db: db,
+		db:       db,
+		location: location,
 	}
 }
 
@@ -143,7 +145,7 @@ func (c *VisaController) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Create if no application exists
-	issuedDate := time.Now().Format("2006-01-02 15:04")
+	issuedDate := time.Now().In(c.location).Format("2006-01-02 15:04")
 	v.Date = issuedDate
 
 	res, err := c.db.Exec(
